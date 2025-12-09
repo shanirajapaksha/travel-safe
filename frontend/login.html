@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>TravelSafe — Login</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+	<div class="login-wrapper">
+		<!-- Animated Background Elements -->
+		<div class="login-bg-shapes">
+			<div class="shape shape-1"></div>
+			<div class="shape shape-2"></div>
+			<div class="shape shape-3"></div>
+		</div>
+
+		<header class="login-header">
+			<div class="login-logo">
+				<i class="fas fa-globe-americas"></i>
+			</div>
+			<div class="login-header-text">
+				<p class="eyebrow"><i class="fas fa-lock"></i> Secure Access</p>
+				<h1>Welcome to <span class="brand-highlight">TravelSafe</span></h1>
+				<p class="sub">Your trusted companion for safe and informed travel</p>
+			</div>
+		</header>
+
+		<main class="login-card">
+			<div class="login-hero">
+				<div class="hero-content">
+					<h2><i class="fas fa-shield-alt"></i> Travel Risk & Wellness Monitor</h2>
+					<ul class="feature-list">
+						<li><i class="fas fa-check-circle"></i> Real-time weather updates</li>
+						<li><i class="fas fa-check-circle"></i> Health & safety advisories</li>
+						<li><i class="fas fa-check-circle"></i> Local news & insights</li>
+						<li><i class="fas fa-check-circle"></i> COVID-19 statistics</li>
+					</ul>
+				</div>
+			</div>
+
+		<div class="divider">
+			<span>Choose your access method</span>
+		</div>
+
+		<div class="login-options">
+			<button id="google-login-btn" class="btn google-btn" type="button">
+				<i class="fab fa-google"></i> Sign in with Google
+			</button>
+
+			<button id="continue-btn" class="btn guest-btn" type="button">
+				<i class="fas fa-user"></i> Continue as Guest
+			</button>
+		</div>
+
+		<div id="google-setup-info" class="login-info hidden">
+			<i class="fas fa-info-circle"></i>
+			<div>
+				<strong>Want to enable Google Sign-In?</strong>
+				<p>Create an OAuth 2.0 Client ID in <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>, add your origin URL, and update the client ID in login.html.</p>
+			</div>
+		</div>			<div class="security-badge">
+				<i class="fas fa-shield-virus"></i>
+				<span>Protected by Google OAuth 2.0</span>
+			</div>
+		</main>
+
+		<footer class="login-footer">
+			<p><i class="fas fa-info-circle"></i> Need help? <a href="https://console.cloud.google.com/" target="_blank">Setup Google OAuth</a></p>
+			<p class="copyright">© 2025 TravelSafe. All rights reserved.</p>
+		</footer>
+	</div>
+
+	<script>
+		// Google login button (shows info when clicked)
+		document.getElementById('google-login-btn').addEventListener('click', () => {
+			const infoBox = document.getElementById('google-setup-info');
+			infoBox.classList.toggle('hidden');
+		});
+
+		// Continue as guest
+		document.getElementById('continue-btn').addEventListener('click', () => {
+			localStorage.setItem('ts_user', JSON.stringify({ name: 'Guest', guest: true }));
+			window.location.href = 'index.html';
+		});
+
+		// If you have a real Google Client ID, uncomment and configure this:
+		/*
+		function handleGoogleLogin(response) {
+			try {
+				const token = response.credential;
+				const payload = JSON.parse(atob(token.split('.')[1]));
+				const profile = {
+					name: payload.name || payload.email,
+					email: payload.email,
+					picture: payload.picture,
+					token
+				};
+				localStorage.setItem('ts_user', JSON.stringify(profile));
+				window.location.href = 'index.html';
+			} catch (err) {
+				console.error('Google login parse error:', err);
+				alert('Login failed. Please try again.');
+			}
+		}
+		*/
+	</script>
+</body>
+</html>

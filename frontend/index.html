@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TravelSafe — Travel Risk & Wellness Monitor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 id="project-name"><i class="fas fa-globe"></i> TravelSafe</h1>
+      <nav class="auth">
+        <div id="user-chip" class="user-chip hidden">
+          <img id="user-avatar" alt="User avatar" />
+          <span id="user-name">Guest</span>
+        </div>
+        <button id="logout-btn" class="btn" type="button">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Search Section -->
+    <section id="search-section" class="card search-card">
+      <label for="country-input" class="visually-hidden">Country name</label>
+      <div class="search-row">
+        <input id="country-input" type="text" placeholder="🌍 Enter country name (e.g., Sri Lanka)" aria-label="Country name">
+        <button id="search-btn" class="btn primary"><i class="fas fa-search"></i> Search</button>
+      </div>
+      <p class="hint">🌡️ Search by country to get weather, health, safety information and local news</p>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+      <!-- Left Column - Country Data -->
+      <div class="left-column">
+        <!-- Results Section -->
+        <section id="results" class="results-grid">
+          <article id="advisory-card" class="card result-card">
+            <h2><i class="fas fa-exclamation-triangle"></i> Travel Advisory</h2>
+            <div class="card-body">
+              <p id="advisory-score" class="big">—</p>
+              <p id="advisory-text">No data</p>
+            </div>
+          </article>
+
+          <article id="covid-card" class="card result-card">
+            <h2><i class="fas fa-virus"></i> COVID-19</h2>
+            <div class="card-body">
+              <ul id="covid-stats" style="list-style: none; padding: 0;">
+                <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Confirmed: <span id="covid-confirmed">—</span></li>
+                <li><i class="fas fa-exclamation-circle" style="color: var(--warning);"></i> Active: <span id="covid-active">—</span></li>
+                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> Deaths: <span id="covid-deaths">—</span></li>
+                <li><i class="fas fa-shield-alt" style="color: var(--success);"></i> Vaccinated: <span id="covid-vaccinated">—</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article id="weather-card" class="card result-card">
+            <h2><i class="fas fa-cloud-sun"></i> Weather</h2>
+            <div class="card-body">
+              <img id="weather-icon" src="" alt="Weather icon" style="display: none; width: 80px; height: 80px;" />
+              <p id="weather-summary">—</p>
+              <p><i class="fas fa-thermometer-half"></i> Temperature: <span id="weather-temp">—</span></p>
+              <p><i class="fas fa-wind"></i> Feels like: <span id="weather-feels">—</span></p>
+            </div>
+          </article>
+
+          <article id="country-card" class="card result-card">
+            <h2><i class="fas fa-passport"></i> Country Info</h2>
+            <div class="card-body country-info">
+              <img id="country-flag" src="" alt="Country flag" hidden />
+              <p><i class="fas fa-map-marker-alt"></i> Region: <span id="country-region">—</span></p>
+              <p><i class="fas fa-coins"></i> Currency: <span id="country-currency">—</span></p>
+              <p><i class="fas fa-users"></i> Population: <span id="country-population">—</span></p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Saved Countries (hidden until user is logged in) -->
+        <section id="saved-countries" class="card saved-card hidden">
+          <h2><i class="fas fa-heart"></i> Saved Countries</h2>
+          <div id="saved-list">
+            <!-- Populated by app.js after successful login -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column - News -->
+      <div class="right-column">
+        <!-- Country Situation Card -->
+        <section id="situation-section" class="card situation-card hidden">
+          <h2><i class="fas fa-map-marked-alt"></i> Current Situation</h2>
+          <div id="situation-content" class="situation-content">
+            <p style="color: var(--text-muted);">Loading situation...</p>
+          </div>
+        </section>
+
+        <section id="news-section" class="card news-card">
+          <h2><i class="fas fa-newspaper"></i> <span id="news-title">Latest News</span></h2>
+          <div id="news-container" class="news-grid">
+            <p style="text-align: center; color: var(--text-muted); padding: 20px;">Search for a country to see local news</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer container">
+    <p>🌍 TravelSafe — Your trusted travel companion</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
